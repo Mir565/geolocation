@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const fs = require('fs'); // Import the fs module
+app.use(express.static('public'))
 
-app.use(express.static('public'));
-
+app.set('view engine', 'ejs');
+app.get('/',(req,res)=>{
+    res.render('index.ejs')
+})
 app.get('/location', (req, res) => {
     const { latitude, longitude } = req.query;
     console.log(`Received location data - Latitude: ${latitude}, Longitude: ${longitude}`);
